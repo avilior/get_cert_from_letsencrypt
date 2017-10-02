@@ -1,0 +1,73 @@
+user guide fore certbot
+
+https://certbot.eff.org/docs/
+
+blog post
+https://medium.com/@yash.kulshrestha/using-lets-encrypt-with-express-e069c7abe625
+
+
+create a python web server to serve the static file required by the ACME protocol
+
+port forward
+
+run then server
+
+sudo python3 webserver.py --port 80 --static /home/zotac/lets_encrypt/static/
+
+
+letsencrypt certonly --webroot -w ./static -d lior.org
+
+
+-to renew execute this
+
+letsencrypt renew
+
+------------------------------------------------------------------------------------------------------------------------
+IMPORTANT NOTES:
+ - If you lose your account credentials, you can recover through
+   e-mails sent to avi@lior.org.
+ - Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/lior.org/fullchain.pem. Your cert will expire
+   on 2017-12-29. To obtain a new version of the certificate in the
+   future, simply run Let's Encrypt again.
+ - Your account credentials have been saved in your Let's Encrypt
+   configuration directory at /etc/letsencrypt. You should make a
+   secure backup of this folder now. This configuration directory will
+   also contain certificates and private keys obtained by Let's
+   Encrypt so making regular backups of this folder is ideal.
+ - If you like Let's Encrypt, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+
+   ---------------------------------------------------------------------------------------------------------------------
+
+   To test the cert and deployment run the secure_webserver
+
+sudo python3 secure_webserver.py --port 443 --static /home/zotac/lets_encrypt/static/
+
+
+curl https://lior.org/hello.txt
+
+Failed with this:
+
+curl: (60) server certificate verification failed. CAfile: /etc/ssl/certs/ca-certificates.crt CRLfile: none
+More details here: http://curl.haxx.se/docs/sslcerts.html
+
+curl performs SSL certificate verification by default, using a "bundle"
+ of Certificate Authority (CA) public keys (CA certs). If the default
+ bundle file isn't adequate, you can specify an alternate file
+ using the --cacert option.
+If this HTTPS server uses a certificate signed by a CA represented in
+ the bundle, the certificate verification probably failed due to a
+ problem with the certificate (it might be expired, or the name might
+ not match the domain name in the URL).
+If you'd like to turn off curl's verification of the certificate, use
+ the -k (or --insecure) option.
+
+ using the -k options passes.
+
+ what if we specify the fullchain.  That worked.  The full chain starts with the cert and follows with the CA
+
+ explains what is going on: https://letsencrypt.org/certificates/
+
