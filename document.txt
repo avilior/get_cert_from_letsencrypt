@@ -71,3 +71,5 @@ If you'd like to turn off curl's verification of the certificate, use
 
  explains what is going on: https://letsencrypt.org/certificates/
 
+CERTFILE = "/etc/letsencrypt/live/lior.org/fullchain.pem"
+KEYFILE  = "/etc/letsencrypt/live/lior.org/privkey.pem"
