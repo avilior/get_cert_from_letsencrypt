@@ -36,6 +36,7 @@ The file will be placed in the webservers static location.  In our case there is
 run the webserver as follows:
 
 cd webserver
+
 sudo python3 webserver.py --port 80 --static <......>/lets_encrypt/static/
 
 Note may have to setup a forwarding rule on the router if the machine is on the LAN.
