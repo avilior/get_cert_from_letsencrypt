@@ -15,9 +15,13 @@ The ACME protocol is implemented by a client which can be installed as follows;
 For ubuntu:
 
 $ sudo apt-get update
+
 $ sudo apt-get install software-properties-common
+
 $ sudo add-apt-repository ppa:certbot/certbot
+
 $ sudo apt-get update
+
 $ sudo apt-get install certbot
 
 Note that an earlier (?) version can also be obtained by sudo apt-get install letsencrypt
